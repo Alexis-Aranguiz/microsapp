@@ -27,9 +27,14 @@ public class AppointmentController {
         return service.listar();
     }
 
-    // --- NUEVO: Endpoint para borrar (CRUD) ---
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable String id) {
         service.eliminar(id);
+    }
+
+    // 👇 NUEVO: Endpoint para modificar (CRUD: Update)
+    @PutMapping("/{id}")
+    public Appointment actualizar(@PathVariable String id, @RequestBody Appointment cita) {
+        return service.actualizar(id, cita);
     }
 }

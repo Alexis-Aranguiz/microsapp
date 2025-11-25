@@ -27,8 +27,17 @@ public class AppointmentService {
         return repo.findAll();
     }
 
-    // --- NUEVO: Método para eliminar (CRUD) ---
     public void eliminar(String id) {
         repo.deleteById(id);
+    }
+
+    // 👇 NUEVO: Método para actualizar
+    public Appointment actualizar(String id, Appointment datosNuevos) {
+        return repo.findById(id).map(cita -> {
+            cita.setNotes(datosNuevos.getNotes());
+            // Si quisieras editar fecha/hora, aquí agregarías:
+            // cita.setStartsAtMillis(datosNuevos.getStartsAtMillis());
+            return repo.save(cita);
+        }).orElse(null);
     }
 }
