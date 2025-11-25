@@ -8,21 +8,18 @@ import java.util.UUID;
 public class Appointment {
 
     @Id
-    private String id; // Usamos String para UUIDs generados por la app o backend
+    private String id;
 
     private String patientId;
     private String dentistId;
-    private Long startsAtMillis; // Coincide con el Long de Android
+    private Long startsAtMillis;
     private String notes;
 
     public Appointment() {
-        // Si el ID viene nulo, generamos uno.
         if (this.id == null) {
             this.id = UUID.randomUUID().toString();
         }
     }
-
-    // Constructor, Getters y Setters
 
     public String getId() {
         return id;
@@ -40,13 +37,15 @@ public class Appointment {
         this.patientId = patientId;
     }
 
-    public String getDentistaId() {
+    // --- CORRECCIÓN AQUÍ: Cambiado a getDentistId (inglés) ---
+    public String getDentistId() {
         return dentistId;
     }
 
-    public void setDentistaId(String dentistId) {
+    public void setDentistId(String dentistId) {
         this.dentistId = dentistId;
     }
+    // ---------------------------------------------------------
 
     public Long getStartsAtMillis() {
         return startsAtMillis;

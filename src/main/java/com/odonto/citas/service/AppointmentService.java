@@ -17,7 +17,6 @@ public class AppointmentService {
     }
 
     public Appointment crear(Appointment cita) {
-        // Aseguramos que tenga ID si no trae uno
         if (cita.getId() == null || cita.getId().isEmpty()) {
             cita.setId(UUID.randomUUID().toString());
         }
@@ -26,5 +25,10 @@ public class AppointmentService {
 
     public List<Appointment> listar() {
         return repo.findAll();
+    }
+
+    // --- NUEVO: Método para eliminar (CRUD) ---
+    public void eliminar(String id) {
+        repo.deleteById(id);
     }
 }

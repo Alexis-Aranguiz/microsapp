@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*") // Permite peticiones desde cualquier origen (Android)
+@CrossOrigin(origins = "*")
 @RestController
-// Ruta en inglés para coincidir con Android retrofit
 @RequestMapping("/appointments")
 public class AppointmentController {
 
@@ -18,15 +17,19 @@ public class AppointmentController {
         this.service = service;
     }
 
-    // Crear cita (POST /appointments)
     @PostMapping
     public Appointment crear(@RequestBody Appointment cita) {
         return service.crear(cita);
     }
 
-    // Listar todas las citas (GET /appointments)
     @GetMapping
     public List<Appointment> listar() {
         return service.listar();
+    }
+
+    // --- NUEVO: Endpoint para borrar (CRUD) ---
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable String id) {
+        service.eliminar(id);
     }
 }
